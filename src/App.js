@@ -25,7 +25,9 @@ function App() {
   var [cards, setNewCards] = useState([]);
   var [columns, setNewColumns] = useState([]);
 
-  var columnAmount = columns.length + 1;
+  var columnAmount = columns.length;
+
+  console.log(columnAmount);
 
   useEffect(() => {
     setCards(false);
@@ -71,7 +73,7 @@ function App() {
     
               <div className="bg-slate-600 p-2 mt-3 rounded-lg">{column}</div>
               {/* populate the cards of the column */}
-              {cards[colIndex].map((card, index) => (
+              {(cards[colIndex]) && cards[colIndex].map((card, index) => (
                 <div key={index} className="bg-slate-600 p-2 mt-3 rounded-lg">
                   {card}
                 </div>
@@ -79,7 +81,7 @@ function App() {
             </div>
           ))}
 
-        {columnAmount === 0 && (
+        {(columnAmount === 0)  && (
           <ColumnHeader
             columnInputRef={columnInputRef}
             handleEnterPressColumn={handleEnterPressColumn}
